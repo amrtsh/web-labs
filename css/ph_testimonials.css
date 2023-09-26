@@ -1,0 +1,129 @@
+.bottom-section {
+    width: 1300px;
+    margin: 0 auto;
+    background-color: #f3f8fe;
+}
+
+.testimonials {
+    text-align: center;
+}
+
+.chapter {
+    width: 1300px;
+    margin: 100px auto;
+    padding-top: 130px;
+}
+
+.third-page {
+    padding: 76px;
+    width: 1120px;
+    height: 425px;
+    margin: 0 auto;
+    border-radius: 20px;
+    background: linear-gradient(#67C3F3, #5A98F2)
+}
+
+.patch {
+    position: absolute;
+    z-index: 0;
+    left: 71%;
+    bottom: 15%;
+}
+
+.el-second {
+    position: absolute;
+    z-index: 0;
+    right: 93%;
+    bottom: 87%
+}
+
+.testimonials-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.testimonials-bottom {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.man-avatar {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.man-avatar img {
+    border-radius: 100px;
+    border: 2px solid #fff;
+}
+
+.man-info h4 {
+    padding-left: 30px;
+    width: 181px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: left;
+    color: white;
+}
+
+.man-info p {
+    padding-left: 30px;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 32px;
+    text-align: left;
+    color: white;
+}
+
+.testimonials-bottom p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 28px;
+    text-align: left;
+    color: white;
+}
+
+.arrow-navigation {
+    padding-top: 42px;
+}
+
+.quontitation {
+    width: 390px;
+}
+
+@media screen and (max-width: 1024px) {
+    .bottom-section {
+        width: 1024px;
+    }
+
+    .testimonials h3 {
+        font-size: 32px;
+    }
+
+    .chapter {
+        width: 1024px;
+    }
+
+    .third-page {
+        height: 425px;
+        width: 980px;
+    }
+
+    .quontitation {
+        display: flex;
+        justify-content: space-around;
+        width: 390px;
+    }
+
+    .arrow-navigation {
+        padding-top: 0 !important;
+    }
+}

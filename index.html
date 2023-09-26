@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+<section class="main-page">
+    <div class="wrapper">
+        <header>
+            <nav class="top-nav" id="header-nav">
+                <a href="/link-here">Home</a>
+                <a href="/link-here">Find a doctor</a>
+                <a href="/link-here">Apps</a>
+                <a href="/link-here">Testimonials</a>
+                <a href="/link-here">About us</a>
+            </nav>
+            <img class="top-logo" src="img\logo.svg" alt="Logo">
+            <button class="burger-menu" id="burger-menu-btn">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+        </header>
+
+
+        <div class="main-page-row">
+            <div class="download-our-mobile-apps">
+                <div class="block"></div>
+                <h3>Download our mobile apps</h3>
+                <img src="img\rect.svg" alt="rectangle" style="padding-top: 36px; padding-bottom: 36px;">
+                <p>Our dedicated patient engagement app and web portal allow
+                    you to access information instantaneously (no tedeous form,
+                    long calls, or administrative hassle) and securely
+                </p>
+                <button>Download <img src="img\btn-vector.svg" alt="vector"></button>
+            </div>
+            <div class="main-page-img">
+                <img src="img\header-photo.png" alt="Mobile apps photo" class="mobile-apps-photo">
+                <img src="img\element.svg" alt="element" class="element">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="check-our-latest-article">
+    <div class="articles">
+        <div class="check-title">
+            <h3>Check out our latest article</h3>
+            <img class="rect" src="img\rect.svg" alt="rectangle">
+        </div>
+        <div class="article-inner-block">
+            <img class="el-second" src="img\element.svg" alt="element">
+            <img class="patch" src="img\Vector patch.png" alt="element">
+            <article>
+                <img src="img\image 2.png" alt="Image"/>
+                <div class="article-text">
+                    <h3>Disease detection, check up in the laboratory</h3>
+                    <p>In this case, the role of the health
+                        laboratory is very important to do a disease detection...</p>
+                    <button class="bttn" href="/link-here">Read more <img src="img\right-arrow.svg" alt="vector">
+                    </button>
+                </div>
+            </article>
+            <article>
+                <img src="img\image 2-1.png" alt="Image" class="photo-02"/>
+                <div class="article-text">
+                    <h3>Herbal medicines that are safe for consumption</h3>
+                    <p>Herbal medicine is very widely used at this time because of its very good for your health...</p>
+                    <button class="bttn" href="/link-here">Read more <img src="img\right-arrow.svg" alt="vector">
+                    </button>
+                </div>
+            </article>
+            <article>
+                <img src="img\image 3.png" alt="Image" class="photo-03"/>
+                <div class="article-text">
+                    <h3>Natural care for healthy facial skin</h3>
+                    <p>A healthy lifestyle should start from now and also for your skin health. There are some...</p>
+                    <button class="bttn" href="/link-here">Read more <img class="button-right-arrow"
+                                                                          src="img\right-arrow.svg" alt="vector">
+                    </button>
+                </div>
+            </article>
+        </div>
+        <button class="view-all" href="/link-here">View all</button>
+    </div>
+
+</section>
+
+<section class="bottom-section">
+    <div class="testimonials">
+        <div class="chapter">
+
+            <div class="third-page">
+                <div class="testimonials-title">
+                    <h3>What our customer are saying</h3>
+                    <img src="img\white-rect.svg" alt="rectangle">
+                </div>
+
+                <div class="testimonials-bottom">
+                    <div class="man-avatar">
+                        <img src="img\man.jpg" alt="man"/>
+                        <div class="man-info">
+                            <h4>Edward Newgate</h4>
+                            <p>Founder Circle</p>
+                        </div>
+                    </div>
+                    <p class="quontitation">“Our dedicated patient engagement app and web portal allow you to access
+                        information
+                        instantaneously (no tedeous form, long calls, or administrative hassle) and securely”</p>
+                </div>
+            </div>
+        </div>
+        <img class="arrow-navigation" src="img\arrow-nav.svg" alt="navigation">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-imgs">
+                <img class="bottom-img" src="img\small-element.svg" alt="element">
+                <img class="bottom-logo" src="img\bottom-logo.svg" alt="Logo">
+            </div>
+            <nav class="bottom-nav">
+                <a href="/link-here">Company</a>
+                <a href="/link-here">Region</a>
+                <a href="/link-here">Help</a>
+            </nav>
+        </div>
+    </footer>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const burgerMenuBtn = document.getElementById("burger-menu-btn");
+        const headerNav = document.getElementById("header-nav");
+
+        burgerMenuBtn.addEventListener("click", function () {
+            headerNav.classList.toggle("active");
+        });
+    });
+</script>
+</body>
+</html>

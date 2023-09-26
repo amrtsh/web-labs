@@ -1,0 +1,21 @@
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.burger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px auto;
+    transition: background-color 0.3s ease;
+}
+@media screen and (max-width: 1024px) {
+    .burger-menu {
+        display: block;
+    }
+}
