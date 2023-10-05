@@ -1,0 +1,22 @@
+export var shipsData = [
+    {id: 1, name: 'Ship 1', tonnage: 1000.50, number_of_passengers: 150, tonnage_price: 12.50},
+    {id: 2, name: 'Ship 2', tonnage: 850.25, number_of_passengers: 120, tonnage_price: 10.75},
+    {id: 3, name: 'Ship 3', tonnage: 1200.75, number_of_passengers: 180, tonnage_price: 14.25},
+    {id: 4, name: 'Ship 4', tonnage: 950.00, number_of_passengers: 140, tonnage_price: 11.75},
+    {id: 5, name: 'Ship 5', tonnage: 750.80, number_of_passengers: 110, tonnage_price: 9.20},
+    {id: 6, name: 'Ship 6', tonnage: 1050.25, number_of_passengers: 160, tonnage_price: 12.90},
+    {id: 7, name: 'Ship 7', tonnage: 900.75, number_of_passengers: 130, tonnage_price: 11.00},
+    {id: 8, name: 'Ship 8', tonnage: 1150.00, number_of_passengers: 170, tonnage_price: 13.50},
+    {id: 9, name: 'Ship 9', tonnage: 720.60, number_of_passengers: 105, tonnage_price: 8.75},
+    {id: 10, name: 'Ship 10', tonnage: 1100.30, number_of_passengers: 165, tonnage_price: 13.20},
+    {id: 11, name: 'Ship 11', tonnage: 950.25, number_of_passengers: 140, tonnage_price: 11.75},
+    {id: 12, name: 'Ship 12', tonnage: 800.50, number_of_passengers: 120, tonnage_price: 10.00},
+    {id: 13, name: 'Ship 13', tonnage: 1250.75, number_of_passengers: 190, tonnage_price: 15.25},
+    {id: 14, name: 'Ship 14', tonnage: 980.20, number_of_passengers: 145, tonnage_price: 12.75},
+    {id: 15, name: 'Ship 15', tonnage: 730.60, number_of_passengers: 110, tonnage_price: 9.00},
+    {id: 16, name: 'Ship 16', tonnage: 1080.25, number_of_passengers: 165, tonnage_price: 13.00},
+    {id: 17, name: 'Ship 17', tonnage: 920.75, number_of_passengers: 135, tonnage_price: 10.75},
+    {id: 18, name: 'Ship 18', tonnage: 1120.00, number_of_passengers: 170, tonnage_price: 13.75},
+    {id: 19, name: 'Ship 19', tonnage: 770.40, number_of_passengers: 115, tonnage_price: 9.50},
+    {id: 20, name: 'Ship 20', tonnage: 1030.20, number_of_passengers: 155, tonnage_price: 12.00}
+];

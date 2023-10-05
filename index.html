@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-ships-site</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<header id="header">
+    <div class="search-input">
+        <input type="text" id="searchInput">
+        <button type="button" class="btn btn-outline-primary" id="searchButton">Search</button>
+        <button type="button" class="btn btn-outline-danger" id="cleanButton">Clean</button>
+        <button type="button" class="btn btn-outline-primary" id="createButton"
+                onclick="window.location.href='create.html'">Create new ship</button>
+    </div>
+</header>
+
+<div id="main-page">
+    <nav id="counter">
+        <h2>Manage Ships</h2>
+        <div>
+            <h3>Sort by the most expensive tonnage</h3>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="expensiveSwitch">
+                <label class="form-check-label" for="expensiveSwitch"></label>
+            </div>
+        </div>
+        <div>
+            <h3>Count total daily expenses:</h3>
+            <button type="button" class="btn btn-primary" id="countButton">Count</button>
+            <h4>Total expenses: <span id="totalExpenses">0</span></h4>
+        </div>
+    </nav>
+    <section id="all-ships">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="itemsContainer">
+
+        </div>
+    </section>
+
+</div>
+
+<script type="module" src="scripts/app.js"></script>
+</body>
+</html>
