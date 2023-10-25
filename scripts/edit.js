@@ -3,39 +3,63 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(queryString);
     const shipId = parseInt(urlParams.get('id'));
 
-    const savedShipsData = JSON.parse(localStorage.getItem('shipsData')) || [];
-    const shipToEdit = savedShipsData.find((ship) => ship.id === shipId);
-
-    if (!shipToEdit) {
-        console.error('Ship not found');
-        return;
-    }
-
-    document.getElementById("name").value = shipToEdit.name;
-    document.getElementById("tonnage").value = shipToEdit.tonnage;
-    document.getElementById("passengers").value = shipToEdit.number_of_passengers;
-    document.getElementById("tonnage_price").value = shipToEdit.tonnage_price;
-
     const editShipForm = document.getElementById("editShipForm");
-    editShipForm.addEventListener("submit", function (event) {
-        event.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const tonnage = parseFloat(document.getElementById("tonnage").value);
-        const passengers = parseInt(document.getElementById("passengers").value);
-        const tonnagePrice = parseFloat(document.getElementById("tonnage_price").value);
+    // Fetch ship data and populate the form
+    fetch(`http://localhost:5000/get_ship/${shipId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.ship) {
+                const shipToEdit = data.ship;
 
-        if (!isNaN(tonnage) && !isNaN(passengers) && !isNaN(tonnagePrice)) {
+                document.getElementById("name").value = shipToEdit.name;
+                document.getElementById("tonnage").value = shipToEdit.tonnage;
+                document.getElementById("passengers").value = shipToEdit.number_of_passengers;
+                document.getElementById("tonnage_price").value = shipToEdit.tonnage_price;
 
-            shipToEdit.name = name;
-            shipToEdit.tonnage = tonnage;
-            shipToEdit.number_of_passengers = passengers;
-            shipToEdit.tonnage_price = tonnagePrice;
+                editShipForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
 
+                    const name = document.getElementById("name").value;
+                    const tonnage = parseFloat(document.getElementById("tonnage").value);
+                    const passengers = parseInt(document.getElementById("passengers").value);
+                    const tonnagePrice = parseFloat(document.getElementById("tonnage_price").value);
 
-            localStorage.setItem('shipsData', JSON.stringify(savedShipsData));
+                    if (!isNaN(tonnage) && !isNaN(passengers) && !isNaN(tonnagePrice)) {
+                        const updatedShip = {
+                            name: name,
+                            tonnage: tonnage,
+                            number_of_passengers: passengers,
+                            tonnage_price: tonnagePrice,
+                        };
 
-            window.location.href = 'index.html';
-        }
-    });
+                        // Send a PUT request to update the ship
+                        fetch(`http://localhost:5000/edit_ship/${shipId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(updatedShip),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.message === 'Ship updated successfully') {
+                                    alert('Ship updated successfully');
+                                    window.location.href = 'index.html'; // Redirect to the main page
+                                } else {
+                                    alert('Failed to update the ship');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating ship:', error);
+                            });
+                    }
+                });
+            } else {
+                console.error('Ship not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching ship data:', error);
+        });
 });

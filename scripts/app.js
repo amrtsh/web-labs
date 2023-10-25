@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const countButton = document.getElementById("countButton");
     const totalExpenses = document.getElementById("totalExpenses");
 
+    let isSorted = false; // Flag to track sorting state
+    let shipData = [];
+
     function populateShips(data) {
         itemsContainer.innerHTML = "";
 
@@ -32,9 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
             const editButton = card.querySelector(".edit-button");
-        editButton.addEventListener("click", () => {
-            window.location.href = `edit.html?id=${ship.id}`;
-        });
+            editButton.addEventListener("click", () => {
+                window.location.href = `edit.html?id=${ship.id}`;
+            });
 
             const deleteButton = card.querySelector(".delete-button");
             deleteButton.addEventListener("click", () => {
@@ -43,50 +46,83 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             function deleteShipById(shipId) {
-                const shipIndex = data.findIndex((ship) => ship.id === shipId);
-
-                if (shipIndex !== -1) {
-                    data.splice(shipIndex, 1);
-
-                    const cardToRemove = document.querySelector(`[data-ship-id="${shipId}"]`);
-                    if (cardToRemove) {
-                        cardToRemove.remove();
-                    }
+                const cardToRemove = document.querySelector(`[data-ship-id="${shipId}"]`);
+                if (cardToRemove) {
+                    cardToRemove.remove();
                 }
+                fetch(`http://localhost:5000/delete_ship/${shipId}`, {
+                    method: 'DELETE',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'Ship deleted successfully') {
+                            // Remove the ship from shipData
+                            const shipIndex = shipData.findIndex(ship => ship.id === shipId);
+                            if (shipIndex !== -1) {
+                                shipData.splice(shipIndex, 1);
+                            }
 
-                localStorage.setItem('shipsData', JSON.stringify(data));
+                            // Remove the ship card from the UI
+                            const cardToRemove = document.querySelector(`[data-ship-id="${shipId}"]`);
+                            if (cardToRemove) {
+                                cardToRemove.remove();
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting ship:', error);
+                    });
             }
 
             itemsContainer.appendChild(card);
         });
     }
 
-    populateShips(savedShipsData);
+    // Function to fetch ship data from the backend
+    function fetchShips(sortParam = 0) {
+        fetch(`http://localhost:5000/get_ships?sort_by_price=${sortParam}`)
+            .then((response) => response.json())
+            .then((data) => {
+                isSorted = sortParam === "1"; // Update sorting flag
+                shipData = data
+                populateShips(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }
+
+    // Populate the ships on page load
+    fetchShips();
 
     searchButton.addEventListener("click", () => {
         const searchTerm = searchInput.value.toLowerCase();
-        const filteredShips = savedShipsData.filter((ship) =>
-            ship.name.toLowerCase().includes(searchTerm)
-        );
-        populateShips(filteredShips);
+        fetch(`http://localhost:5000/search_ships?search_term=${searchTerm}`)
+            .then(response => response.json())
+            .then(data => {
+                populateShips(data);
+            })
+            .catch(error => {
+                console.error('Error searching ships:', error);
+            });
     });
 
     cleanButton.addEventListener("click", () => {
         searchInput.value = "";
-        populateShips(savedShipsData);
+        fetchShips(); // Reset to unsorted state
     });
 
     expensiveSwitch.addEventListener("change", () => {
-        const dataToSort = [...savedShipsData];
-        if (expensiveSwitch.checked) {
-            dataToSort.sort((a, b) => b.tonnage_price - a.tonnage_price);
-        } else {
-            dataToSort.sort((a, b) => a.tonnage_price - b.tonnage_price);
-        }
-        populateShips(dataToSort);
+        const sortParam = expensiveSwitch.checked ? "1" : "0";
+        fetchShips(sortParam);
     });
 
     countButton.addEventListener("click", () => {
-        totalExpenses.textContent = savedShipsData.reduce((total, ship) => total + ship.tonnage_price, 0);
+        const totalExpense = calculateTotalExpense(shipData);
+        totalExpenses.textContent = totalExpense;
     });
+
+    function calculateTotalExpense(ships) {
+        return ships.reduce((total, ship) => total + ship.tonnage_price, 0);
+    }
 });

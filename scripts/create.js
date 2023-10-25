@@ -1,5 +1,3 @@
-import {shipsData} from './shipsData.js';
-
 document.addEventListener("DOMContentLoaded", function () {
     const createShipForm = document.getElementById("createShipForm");
 
@@ -13,25 +11,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (name && !isNaN(tonnage) && !isNaN(passengers) && !isNaN(tonnage_price)) {
             const newShip = {
-                id: generateUniqueId(),
                 name: name,
                 tonnage: tonnage,
                 number_of_passengers: passengers,
                 tonnage_price: tonnage_price,
             };
 
-            shipsData.push(newShip);
-            saveShipsData(shipsData);
-            window.location.href = 'index.html'
-            console.log(shipsData)
+            createShip(newShip);
         }
     });
 
-    function generateUniqueId() {
-        return Math.floor(Math.random() * Date.now());
-    }
-
-    function saveShipsData(data) {
-        localStorage.setItem('shipsData', JSON.stringify(data));
+    function createShip(shipData) {
+        fetch('http://localhost:5000/create_ship', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(shipData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Ship created successfully') {
+                alert('Ship created successfully');
+                window.location.href = 'index.html';
+            } else {
+                alert('Failed to create the ship');
+            }
+        })
+        .catch(error => {
+            console.error('Error creating ship:', error);
+        });
     }
 });
